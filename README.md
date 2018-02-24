@@ -1,4 +1,4 @@
-# go-zap - Seamless integration between opentracing and Zap
+# go-zap - Seamless integration between Opentracing and Zap
 
 this repo contains a couple possible integrations with go.uber.org/zap
 
@@ -14,6 +14,7 @@ Import the package and use it as your `log` package:
 import 	"github.com/opentracing-contrib/go-zap/log"
 ```
 
+Example with Debug level (similar funcs exist for the other levels).
 Log on zap only:
 
 ```
