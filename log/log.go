@@ -3,6 +3,7 @@ package log
 import (
 	"context"
 
+	"github.com/opentracing-contrib/go-zap/utils"
 	opentracing "github.com/opentracing/opentracing-go"
 	opentracinglog "github.com/opentracing/opentracing-go/log"
 	"go.uber.org/zap"
@@ -142,7 +143,7 @@ func logSpan(span opentracing.Span, log string, fields ...zapcore.Field) {
 			opentracingFields = append(opentracingFields, opentracinglog.String("event", log))
 		}
 		if len(fields) > 0 {
-			opentracingFields = append(opentracingFields, zapFieldsToOpentracing(fields...)...)
+			opentracingFields = append(opentracingFields, utils.ZapFieldsToOpentracing(fields...)...)
 		}
 		span.LogFields(opentracingFields...)
 	}
