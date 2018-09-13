@@ -2,11 +2,20 @@ package utils
 
 import (
 	"testing"
+	"time"
 
 	opentracinglog "github.com/opentracing/opentracing-go/log"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
+
+type stringer struct {
+	string
+}
+
+func (s stringer) String() string {
+	return s.string
+}
 
 func TestFieldsConversion(t *testing.T) {
 
@@ -24,6 +33,14 @@ func TestFieldsConversion(t *testing.T) {
 		},
 		{
 			zap.String("", "123"),
+			opentracinglog.String("", "123"),
+		},
+		{
+			zap.Stringer("namespace", stringer{""}),
+			opentracinglog.String("namespace", ""),
+		},
+		{
+			zap.Stringer("", stringer{"123"}),
 			opentracinglog.String("", "123"),
 		},
 		{
@@ -45,6 +62,10 @@ func TestFieldsConversion(t *testing.T) {
 		{
 			zap.Uint64("namespace", 1),
 			opentracinglog.Uint64("namespace", 1),
+		},
+		{
+			zap.Duration("namespace", time.Second),
+			opentracinglog.String("namespace", "1s"),
 		},
 		{
 			zap.Float32("namespace", 1),
