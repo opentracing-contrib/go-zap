@@ -1,7 +1,9 @@
 package utils
 
 import (
+	"fmt"
 	"math"
+	"time"
 
 	opentracinglog "github.com/opentracing/opentracing-go/log"
 	"go.uber.org/zap/zapcore"
@@ -40,10 +42,14 @@ func ZapFieldToOpentracing(zapField zapcore.Field) opentracinglog.Field {
 		return opentracinglog.Int32(zapField.Key, int32(zapField.Integer))
 	case zapcore.StringType:
 		return opentracinglog.String(zapField.Key, zapField.String)
+	case zapcore.StringerType:
+		return opentracinglog.String(zapField.Key, zapField.Interface.(fmt.Stringer).String())
 	case zapcore.Uint64Type:
 		return opentracinglog.Uint64(zapField.Key, uint64(zapField.Integer))
 	case zapcore.Uint32Type:
 		return opentracinglog.Uint32(zapField.Key, uint32(zapField.Integer))
+	case zapcore.DurationType:
+		return opentracinglog.String(zapField.Key, time.Duration(zapField.Integer).String())
 	case zapcore.ErrorType:
 		return opentracinglog.Error(zapField.Interface.(error))
 	default:
