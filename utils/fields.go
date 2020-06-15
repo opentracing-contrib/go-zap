@@ -27,11 +27,7 @@ func ZapFieldToOpentracing(zapField zapcore.Field) opentracinglog.Field {
 	switch zapField.Type {
 
 	case zapcore.BoolType:
-		val := false
-		if zapField.Integer >= 1 {
-			val = true
-		}
-		return opentracinglog.Bool(zapField.Key, val)
+		return opentracinglog.Bool(zapField.Key, zapField.Integer >= 1)
 	case zapcore.Float32Type:
 		return opentracinglog.Float32(zapField.Key, math.Float32frombits(uint32(zapField.Integer)))
 	case zapcore.Float64Type:
