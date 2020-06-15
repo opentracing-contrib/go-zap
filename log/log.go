@@ -138,7 +138,7 @@ func Fatal(log string, fields ...zapcore.Field) {
 
 func logSpan(span opentracing.Span, log string, fields ...zapcore.Field) {
 	if span != nil {
-		opentracingFields := make([]opentracinglog.Field, len(fields)+1)
+		var opentracingFields []opentracinglog.Field
 		if log != "" {
 			opentracingFields = append(opentracingFields, opentracinglog.String("event", log))
 		}
