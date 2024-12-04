@@ -25,7 +25,6 @@ func ZapFieldsToOpentracing(zapFields ...zapcore.Field) []opentracinglog.Field {
 // input Zap field.
 func ZapFieldToOpentracing(zapField zapcore.Field) opentracinglog.Field {
 	switch zapField.Type {
-
 	case zapcore.BoolType:
 		val := false
 		if zapField.Integer >= 1 {
