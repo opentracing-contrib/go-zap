@@ -18,7 +18,6 @@ func (s stringer) String() string {
 }
 
 func TestFieldsConversion(t *testing.T) {
-
 	TestData := []struct {
 		ZapField         zapcore.Field
 		OpenTracingField opentracinglog.Field
@@ -97,5 +96,4 @@ func TestFieldsConversion(t *testing.T) {
 			t.Errorf("Expected same value. Got %s but expected %s", result.Value(), data.OpenTracingField.Value())
 		}
 	}
-
 }

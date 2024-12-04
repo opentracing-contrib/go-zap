@@ -12,7 +12,7 @@ import (
 
 // DEBUG
 
-// DebugWithContext logs on debug level and trace based on the context span if it exists
+// DebugWithContext logs on debug level and trace based on the context span if it exists.
 func DebugWithContext(ctx context.Context, log string, fields ...zapcore.Field) {
 	DebugWithSpan(opentracing.SpanFromContext(ctx), log, fields...)
 }
@@ -23,14 +23,14 @@ func DebugWithSpan(span opentracing.Span, log string, fields ...zapcore.Field) {
 	logSpan(span, log, fields...)
 }
 
-// Debug logs on debug level
+// Debug logs on debug level.
 func Debug(log string, fields ...zapcore.Field) {
 	zap.L().Debug(log, fields...)
 }
 
 // INFO
 
-// InfoWithContext logs on info level and trace based on the context span if it exists
+// InfoWithContext logs on info level and trace based on the context span if it exists.
 func InfoWithContext(ctx context.Context, log string, fields ...zapcore.Field) {
 	InfoWithSpan(opentracing.SpanFromContext(ctx), log, fields...)
 }
@@ -39,17 +39,16 @@ func InfoWithContext(ctx context.Context, log string, fields ...zapcore.Field) {
 func InfoWithSpan(span opentracing.Span, log string, fields ...zapcore.Field) {
 	Info(log, fields...)
 	logSpan(span, log, fields...)
-
 }
 
-// Info logs on info level
+// Info logs on info level.
 func Info(log string, fields ...zapcore.Field) {
 	zap.L().Info(log, fields...)
 }
 
 // WARN
 
-// WarnWithContext logs on warn level and trace based on the context span if it exists
+// WarnWithContext logs on warn level and trace based on the context span if it exists.
 func WarnWithContext(ctx context.Context, log string, fields ...zapcore.Field) {
 	WarnWithSpan(opentracing.SpanFromContext(ctx), log, fields...)
 }
@@ -58,17 +57,16 @@ func WarnWithContext(ctx context.Context, log string, fields ...zapcore.Field) {
 func WarnWithSpan(span opentracing.Span, log string, fields ...zapcore.Field) {
 	Warn(log, fields...)
 	logSpan(span, log, fields...)
-
 }
 
-// Warn logs on warn level
+// Warn logs on warn level.
 func Warn(log string, fields ...zapcore.Field) {
 	zap.L().Warn(log, fields...)
 }
 
 // ERROR
 
-// ErrorWithContext logs on error level and trace based on the context span if it exists
+// ErrorWithContext logs on error level and trace based on the context span if it exists.
 func ErrorWithContext(ctx context.Context, log string, fields ...zapcore.Field) {
 	ErrorWithSpan(opentracing.SpanFromContext(ctx), log, fields...)
 }
@@ -79,14 +77,14 @@ func ErrorWithSpan(span opentracing.Span, log string, fields ...zapcore.Field) {
 	logSpan(span, log, fields...)
 }
 
-// Error logs on error level
+// Error logs on error level.
 func Error(log string, fields ...zapcore.Field) {
 	zap.L().Error(log, fields...)
 }
 
 // DPANIC
 
-// DPanicWithContext logs on dPanic level and trace based on the context span if it exists
+// DPanicWithContext logs on dPanic level and trace based on the context span if it exists.
 func DPanicWithContext(ctx context.Context, log string, fields ...zapcore.Field) {
 	DPanicWithSpan(opentracing.SpanFromContext(ctx), log, fields...)
 }
@@ -97,14 +95,14 @@ func DPanicWithSpan(span opentracing.Span, log string, fields ...zapcore.Field) 
 	DPanic(log, fields...)
 }
 
-// DPanic logs on dPanic level
+// DPanic logs on dPanic level.
 func DPanic(log string, fields ...zapcore.Field) {
 	zap.L().DPanic(log, fields...)
 }
 
 // PANIC
 
-// PanicWithContext logs on panic level and trace based on the context span if it exists
+// PanicWithContext logs on panic level and trace based on the context span if it exists.
 func PanicWithContext(ctx context.Context, log string, fields ...zapcore.Field) {
 	PanicWithSpan(opentracing.SpanFromContext(ctx), log, fields...)
 }
@@ -115,12 +113,12 @@ func PanicWithSpan(span opentracing.Span, log string, fields ...zapcore.Field) {
 	Panic(log, fields...)
 }
 
-// Panic logs on panic level
+// Panic logs on panic level.
 func Panic(log string, fields ...zapcore.Field) {
 	zap.L().Panic(log, fields...)
 }
 
-// FatalWithContext logs on fatal level and trace based on the context span if it exists
+// FatalWithContext logs on fatal level and trace based on the context span if it exists.
 func FatalWithContext(ctx context.Context, log string, fields ...zapcore.Field) {
 	FatalWithSpan(opentracing.SpanFromContext(ctx), log, fields...)
 }
@@ -131,7 +129,7 @@ func FatalWithSpan(span opentracing.Span, log string, fields ...zapcore.Field) {
 	Fatal(log, fields...)
 }
 
-// Fatal logs on fatal level
+// Fatal logs on fatal level.
 func Fatal(log string, fields ...zapcore.Field) {
 	zap.L().Fatal(log, fields...)
 }
