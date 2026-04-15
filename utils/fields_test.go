@@ -18,6 +18,7 @@ func (s stringer) String() string {
 }
 
 func TestFieldsConversion(t *testing.T) {
+	t.Parallel()
 	TestData := []struct {
 		ZapField         zapcore.Field
 		OpenTracingField opentracinglog.Field
