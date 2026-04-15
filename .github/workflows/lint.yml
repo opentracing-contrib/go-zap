@@ -41,5 +41,3 @@ jobs:
 
       - name: Lint Actions
         uses: reviewdog/action-actionlint@v1
-        with:
-          actionlint_flags: -shellcheck ""
