@@ -18,7 +18,7 @@ func (s stringer) String() string {
 }
 
 func TestFieldsConversion(t *testing.T) {
-
+	t.Parallel()
 	TestData := []struct {
 		ZapField         zapcore.Field
 		OpenTracingField opentracinglog.Field
@@ -83,6 +83,24 @@ func TestFieldsConversion(t *testing.T) {
 			zap.Bool("namespace", true),
 			opentracinglog.Bool("namespace", true),
 		},
+		// StringerType: Interface payload is not a fmt.Stringer – should fall back to Object.
+		{
+			zapcore.Field{Key: "stringer", Type: zapcore.StringerType, Interface: 42},
+			opentracinglog.Object("stringer", 42),
+		},
+		{
+			zapcore.Field{Key: "stringer", Type: zapcore.StringerType, Interface: nil},
+			opentracinglog.Object("stringer", nil),
+		},
+		// ErrorType: Interface payload is not an error – should fall back to Object.
+		{
+			zapcore.Field{Key: "err", Type: zapcore.ErrorType, Interface: "not an error"},
+			opentracinglog.Object("err", "not an error"),
+		},
+		{
+			zapcore.Field{Key: "err", Type: zapcore.ErrorType, Interface: nil},
+			opentracinglog.Object("err", nil),
+		},
 	}
 
 	for _, data := range TestData {
@@ -97,5 +115,4 @@ func TestFieldsConversion(t *testing.T) {
 			t.Errorf("Expected same value. Got %s but expected %s", result.Value(), data.OpenTracingField.Value())
 		}
 	}
-
 }
